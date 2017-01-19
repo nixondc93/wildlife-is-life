@@ -1,2 +1,2 @@
-class Organization < Api
+class Organization < ApplicationRecord
 end

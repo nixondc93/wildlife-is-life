@@ -1,2 +1,2 @@
-class Animal < api
+class Animal < ApplicationRecord
 end

@@ -1,2 +1,2 @@
-class User < Api
+class User < ApplicationRecord
 end
