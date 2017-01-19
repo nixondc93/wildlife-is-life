@@ -16,14 +16,20 @@ ActiveRecord::Schema.define(version: 20170118032848) do
   enable_extension "plpgsql"
 
   create_table "animals", force: :cascade do |t|
-    t.string   "name"
+    t.string   "taxonname"
+    t.integer  "taxonid"
     t.string   "scientific_name"
-    t.string   "threat_level"
-    t.text     "regions"
-    t.integer  "population"
-    t.string   "description"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "assesments",           default: [],              array: true
+    t.text     "taxonomicnotes"
+    t.text     "rationale"
+    t.text     "geographicrange"
+    t.text     "population"
+    t.text     "populationtrend"
+    t.text     "habitat"
+    t.text     "threats"
+    t.text     "conservationmeasures"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "organizations", force: :cascade do |t|
