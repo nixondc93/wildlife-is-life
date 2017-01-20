@@ -11,6 +11,8 @@ gem 'rails', '~> 5.0.1'
 
 gem 'will_paginate'
 
+gem "browserify-rails"
+
 #react-rails
 gem 'react-rails'
 

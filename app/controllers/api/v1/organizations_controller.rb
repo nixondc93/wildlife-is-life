@@ -1,4 +1,4 @@
-class Api::V1::OrganizationsContoller < Api::V1::BaseController
+class Api::V1::OrganizationsController < Api::V1::BaseController
 
   def index
     respond_with Organization.all
