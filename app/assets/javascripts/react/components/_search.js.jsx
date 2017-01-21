@@ -1,19 +1,29 @@
 
 class Search extends React.Component{
 
-  handleClick(){
-    console.log("click")
+  constructor(props){
+    super(props);
+    this.state = {
+      results: []
+    };
   }
+
+
+
+
+
 
   render(){
     const RaisedButton = MaterialUi.RaisedButton;
     const TextField = MaterialUi.TextField
 
     return (
-      <form>
-        <TextField placeholder="Species Name"  />
-        <RaisedButton label="Search" onClick={this.handleClick}/>
-      </form>
+      <div>
+        <h3>Search for Species</h3>
+        <TextField placeholder="Species Name" ref="searchbar" onChange={this.props.handleChange.bind(this)}/>
+
+
+      </div>
     )
   }
 

@@ -1,16 +1,25 @@
 class Navigation extends React.Component{
 
+
+
+  constructor(props){
+    super(props);
+  }
+
+
+
   render(){
+    const RaisedButton = MaterialUi.RaisedButton;
+    const Nav = MaterialUi.LeftNav;
+
     return (
       <div>
-        <nav>
-          <form>
-              <input type="search"></input>
-              <input type="submit"></input>
-          </form>
-          <button>About</button>
-          <button>Organizations</button>
-        </nav>
+        <Nav>
+          <Search handleChange={this.props.handleChange.bind(this)}/>
+
+          <RaisedButton label="About" ref='about' onClick={this.props.handleAboutClick}/>
+          <RaisedButton label="Organizations" ref='Orgs' onClick={this.props.handleOrgsClick}/>
+        </Nav>
       </div>
     )
   }
