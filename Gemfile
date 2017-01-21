@@ -13,6 +13,8 @@ gem 'will_paginate'
 
 gem "browserify-rails"
 
+gem 'materialui-rails'
+
 #react-rails
 gem 'react-rails'
 

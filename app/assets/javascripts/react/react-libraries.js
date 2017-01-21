@@ -1,5 +1,6 @@
 //React Library
 React = require('react');
+ReactDOM = require('react-dom');
 //Material Design Library
 MaterialUi = require('material-ui/lib');
 injectTapEventPlugin = require('react-tap-event-plugin'); injectTapEventPlugin();
