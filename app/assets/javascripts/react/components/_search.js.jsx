@@ -3,26 +3,20 @@ class Search extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {
-      results: []
-    };
   }
 
-
-
-
-
+  handleClick(e){
+    e.target.value = ''
+  }
 
   render(){
-    const RaisedButton = MaterialUi.RaisedButton;
-    const TextField = MaterialUi.TextField
+    const TextField = MaterialUi.TextField;
+    const CardTitle = MaterialUi.CardTitle;
 
     return (
       <div>
-        <h3>Search for Species</h3>
-        <TextField placeholder="Species Name" ref="searchbar" onChange={this.props.handleChange.bind(this)}/>
-
-
+        <CardTitle>Search for Species</CardTitle>
+        <TextField placeholder="Species Name" onChange={this.props.handleChange} onClick={this.handleClick}/>
       </div>
     )
   }

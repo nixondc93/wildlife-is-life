@@ -22,10 +22,19 @@ class Api::V1::AnimalsController < Api::V1::BaseController
     respond_with animal,   json: animal
   end
 
+  def find
+    result = Animal.search do
+      fulltext params[:species]["name"] do
+        fields(:taxonname, :scientific_name)
+      end
+    end
+    respond_with result.results, json: result.results
+  end
+
 private
 
   def animal_params
-    params.require(:animal).permit(:id)
+    params.require(:animal).permit()
   end
 
 end

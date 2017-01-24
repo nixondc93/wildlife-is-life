@@ -13,6 +13,10 @@ gem 'will_paginate'
 
 gem "browserify-rails"
 
+gem 'sunspot_rails'
+
+gem 'sunspot_solr'
+
 gem 'materialui-rails'
 
 #react-rails

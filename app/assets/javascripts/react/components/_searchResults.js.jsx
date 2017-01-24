@@ -1,26 +1,40 @@
-
-
-
 class SearchResults extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {
-      results: this.props.results
-    };
   }
-
 
   render(){
     const Card = MaterialUi.Card;
+    const CardTitle = MaterialUi.CardTitle;
+    const CardText = MaterialUi.CardText;
+    let result = this.props.results.map((result) => {
+      return (
+        <div key={result.id}>
+          <Card style={{marginLeft: "18%", backgroundColor: "rgba(255, 255, 255, 0.8)"}}>
+            <CardTitle
+              showExpandableButton={true}
+              actAsExpander={true}
+              title={result.taxonname}
+              subtitle={`Scientific Name: ${result.scientific_name}`}
+            />
+            <CardText>
+              <span
+                dangerouslySetInnerHTML=
+                {{__html:  result.taxonomicnotes == null ?
+                  "No info yet" : `<b>Info: </b>  ${result.taxonomicnotes}`}}
+              >
+              </span>
+            </CardText>
+          </Card>
 
+        </div>
+      )
+    })
     return (
       <div>
-        <Card>
-          <h3>a card</h3>
-          <p> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. </p>
-        </Card>
-
+        <h2> Search Results </h2>
+        {this.props.results.length === 0 ? <CardTitle title="Search Again"/> : result}
       </div>
     )
   }

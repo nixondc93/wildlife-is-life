@@ -5,35 +5,50 @@ class Body extends React.Component {
     this.state = {
       results: [],
       displayAbout: false,
-      displayOrgs: false
+      displayOrgs: false,
+      query: ""
     }
   }
 
 
   handleAboutClick(){
-    console.log('about')
-    this.setState({displayAbout: true, results: [], displayOrgs: true})
-    console.log(this.state)
+    this.setState({displayAbout: true, results: [], displayOrgs: false})
   }
 
   handleOrgsClick(){
-    console.log("Orgs")
     this.setState({displayAbout: false, results: [], displayOrgs: true})
-    console.log(this.state)
+  }
+
+  queryHandler(str){
+    this.setState({
+      query: str
+    })
   }
 
   handleChange(e) {
-    this.setState({displayAbout: false, displayOrgs: false})
-    $.getJSON('/api/v1/animals.json', (response) => {
-      this.setState({results: response});
-    }).then((res) => { console.log('state  ', this.state.results)});
+    this.setState({displayAbout: false, displayOrgs: false, results: []})
+    $.ajax({
+      url: '/api/v1/animals/find.json',
+      data: {species: {name: e.target.value}},
+      success: (response) => {
+        console.log(response);
+        this.setState({results: response});
+      },
+      error: (response) => {
+        console.log("search failed", response)
+      }
+    });
   }
 
   render() {
-
     return (
       <div>
-        <Navigation handleAboutClick={this.handleAboutClick.bind(this)}  handleOrgsClick={this.handleOrgsClick.bind(this)} handleChange={this.handleChange.bind(this)}/>
+        <Navigation
+          handleAboutClick={this.handleAboutClick.bind(this)}
+          handleOrgsClick={this.handleOrgsClick.bind(this)}
+          handleChange={this.handleChange.bind(this)}
+          queryHandler={this.queryHandler.bind(this)}
+        />
         {this.state.displayAbout && <About/>}
         {this.state.displayOrgs && <Organizations/>}
         {this.state.results.length !== 0 && <SearchResults results={this.state.results}/>}
