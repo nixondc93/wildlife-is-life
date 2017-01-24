@@ -26,18 +26,20 @@ class Body extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({displayAbout: false, displayOrgs: false, results: []})
-    $.ajax({
-      url: '/api/v1/animals/find.json',
-      data: {species: {name: e.target.value}},
-      success: (response) => {
-        console.log(response);
-        this.setState({results: response});
-      },
-      error: (response) => {
-        console.log("search failed", response)
-      }
-    });
+    if(e.target.value !== ''){
+      this.setState({displayAbout: false, displayOrgs: false, results: []})
+      $.ajax({
+        url: '/api/v1/animals/find.json',
+        data: {species: {name: e.target.value}},
+        success: (response) => {
+          console.log(response);
+          this.setState({results: response});
+        },
+        error: (response) => {
+          console.log("search failed", response)
+        }
+      });
+    }
   }
 
   render() {

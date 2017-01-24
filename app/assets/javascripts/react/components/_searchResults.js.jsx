@@ -2,6 +2,7 @@ class SearchResults extends React.Component{
 
   constructor(props){
     super(props);
+
   }
 
   render(){
@@ -9,12 +10,14 @@ class SearchResults extends React.Component{
     const CardTitle = MaterialUi.CardTitle;
     const CardText = MaterialUi.CardText;
     let result = this.props.results.map((result) => {
+      let expandable = result.taxonomicnotes !== null
+
       return (
         <div key={result.id}>
-          <Card style={{marginLeft: "18%", backgroundColor: "rgba(255, 255, 255, 0.8)"}}>
+          <Card style={{margin: "10px 0 10px 18%", backgroundColor: "rgba(255, 255, 255, 0.8)"}}>
             <CardTitle
-              showExpandableButton={true}
-              actAsExpander={true}
+              showExpandableButton={expandable}
+              actAsExpander={expandable}
               title={result.taxonname}
               subtitle={`Scientific Name: ${result.scientific_name}`}
             />
@@ -22,7 +25,26 @@ class SearchResults extends React.Component{
               <span
                 dangerouslySetInnerHTML=
                 {{__html:  result.taxonomicnotes == null ?
-                  "No info yet" : `<b>Info: </b>  ${result.taxonomicnotes}`}}
+                  "No info yet" : `<h3><b>Info:</b></h3>  ${result.taxonomicnotes}`}}
+              >
+              </span>
+            </CardText>
+            <CardText expandable={true}>
+              <span dangerouslySetInnerHTML={{__html:
+                  result.geographicrange == null ?  "" : `<h3><b>Geographic Range: </b></h3><br/> ${result.geographicrange}`}}
+              >
+              </span>
+            </CardText>
+            <CardText expandable={true}>
+              <span dangerouslySetInnerHTML={{__html:
+                  result.habitat == null ?  "" : `<h3><b>Habitat: </b> </h3><br/>  ${result.habitat}`}}
+              >
+              </span>
+            </CardText>
+            <CardText expandable={true}>
+
+              <span dangerouslySetInnerHTML={{__html:
+                  result.population == null ?  "" : `<h3><b>Population:</b></h3> <b>Trend: ${result.populationtrend}</b><br/><br/>  ${result.population}`}}
               >
               </span>
             </CardText>
