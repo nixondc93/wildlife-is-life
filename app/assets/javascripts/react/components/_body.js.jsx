@@ -4,25 +4,24 @@ class Body extends React.Component {
     super(props);
     this.state = {
       results: [],
+      orgs: [],
       displayAbout: false,
-      displayOrgs: false,
-      query: ""
+      displayOrgs: false
     }
   }
-
 
   handleAboutClick(){
     this.setState({displayAbout: true, results: [], displayOrgs: false})
   }
 
   handleOrgsClick(){
-    this.setState({displayAbout: false, results: [], displayOrgs: true})
-  }
-
-  queryHandler(str){
-    this.setState({
-      query: str
-    })
+    $.ajax({
+      url: '/api/v1/organizations.json',
+      success: (response) => {
+        this.setState({displayAbout: false, results: [], displayOrgs: true})
+        this.setState({orgs: response});
+      }
+    });
   }
 
   handleChange(e) {
@@ -33,6 +32,7 @@ class Body extends React.Component {
         data: {species: {name: e.target.value}},
         success: (response) => {
           console.log(response);
+
           this.setState({results: response});
         },
         error: (response) => {
@@ -49,10 +49,9 @@ class Body extends React.Component {
           handleAboutClick={this.handleAboutClick.bind(this)}
           handleOrgsClick={this.handleOrgsClick.bind(this)}
           handleChange={this.handleChange.bind(this)}
-          queryHandler={this.queryHandler.bind(this)}
         />
         {this.state.displayAbout && <About/>}
-        {this.state.displayOrgs && <Organizations/>}
+        {this.state.displayOrgs && <Organizations orgs={this.state.orgs}/>}
         {this.state.results.length !== 0 && <SearchResults results={this.state.results}/>}
       </div>
     )

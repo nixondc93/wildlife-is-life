@@ -4,7 +4,7 @@ class CreateAnimals < ActiveRecord::Migration[5.0]
       t.string :taxonname
       t.integer :taxonid
       t.string :scientific_name
-      t.string :assesments, array:true, default:[]
+      t.json :assesments
       t.text :taxonomicnotes
       t.text :rationale
       t.text :geographicrange

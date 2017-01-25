@@ -15,7 +15,7 @@ class Search extends React.Component{
 
     return (
       <div>
-        <CardTitle>Search for Species</CardTitle>
+        <CardTitle>Search Species</CardTitle>
         <TextField placeholder="Species Name" onChange={this.props.handleChange} onClick={this.handleClick}/>
       </div>
     )

@@ -18,7 +18,6 @@ class Navigation extends React.Component{
         >
           <Search
             handleChange={this.props.handleChange}
-            queryHandler={this.props.queryHandler}
           />
           <MenuItem
             style={{ position: "absolute", bottom: 5, left: 10}}

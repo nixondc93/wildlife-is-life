@@ -5,6 +5,8 @@ class SearchResults extends React.Component{
 
   }
 
+  speciesImages
+
   render(){
     const Card = MaterialUi.Card;
     const CardTitle = MaterialUi.CardTitle;
@@ -14,7 +16,7 @@ class SearchResults extends React.Component{
 
       return (
         <div key={result.id}>
-          <Card style={{margin: "10px 0 10px 18%", backgroundColor: "rgba(255, 255, 255, 0.8)"}}>
+          <Card style={{margin: "10px 0 10px 18%", backgroundColor: "rgba(255, 255, 255, 0.85)"}}>
             <CardTitle
               showExpandableButton={expandable}
               actAsExpander={expandable}
@@ -25,7 +27,7 @@ class SearchResults extends React.Component{
               <span
                 dangerouslySetInnerHTML=
                 {{__html:  result.taxonomicnotes == null ?
-                  "No info yet" : `<h3><b>Info:</b></h3>  ${result.taxonomicnotes}`}}
+                  "No information yet" : `<h3><b>Description:</b></h3>  ${result.taxonomicnotes}`}}
               >
               </span>
             </CardText>
@@ -37,14 +39,31 @@ class SearchResults extends React.Component{
             </CardText>
             <CardText expandable={true}>
               <span dangerouslySetInnerHTML={{__html:
-                  result.habitat == null ?  "" : `<h3><b>Habitat: </b> </h3><br/>  ${result.habitat}`}}
+                  result.habitat == null ?  "" : `<h3><b>Habitat: </b> </h3>  ${result.habitat}`}}
               >
               </span>
             </CardText>
             <CardText expandable={true}>
-
               <span dangerouslySetInnerHTML={{__html:
                   result.population == null ?  "" : `<h3><b>Population:</b></h3> <b>Trend: ${result.populationtrend}</b><br/><br/>  ${result.population}`}}
+              >
+              </span>
+            </CardText>
+            <CardText expandable={true}>
+              <span dangerouslySetInnerHTML={{__html:
+                  result.assesments == null ?  "" : `${result.assesments}`}}
+              >
+              </span>
+            </CardText>
+            <CardText expandable={true}>
+              <span dangerouslySetInnerHTML={{__html:
+                  result.conservationmeasures == null ?  "" : `<h3><b>Conservation Measures:</b></h3> ${result.conservationmeasures}`}}
+              >
+              </span>
+            </CardText>
+            <CardText expandable={true}>
+              <span dangerouslySetInnerHTML={{__html:
+                  result.threats == null ?  "" : `<h3><b>Threats:</b></h3> ${result.threats}`}}
               >
               </span>
             </CardText>
