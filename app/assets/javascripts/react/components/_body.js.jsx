@@ -31,8 +31,6 @@ class Body extends React.Component {
         url: '/api/v1/animals/find.json',
         data: {species: {name: e.target.value}},
         success: (response) => {
-          console.log(response);
-
           this.setState({results: response});
         },
         error: (response) => {
