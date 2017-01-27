@@ -8,6 +8,8 @@ class SearchResults extends React.Component{
 
   }
 
+//It's great you were able to get the XML parsing working for this api
+//A great skill to have in the future, even if it was tedious at the time
   xmlToJson(xml){
 
   	// Create the return object
