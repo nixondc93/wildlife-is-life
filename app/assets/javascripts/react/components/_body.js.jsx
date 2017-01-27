@@ -40,6 +40,7 @@ class Body extends React.Component {
     }
   }
 
+//good grasp on components and state usage
   render() {
     return (
       <div>

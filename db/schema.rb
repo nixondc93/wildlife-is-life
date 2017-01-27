@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170119230018) do
     t.string   "taxonname"
     t.integer  "taxonid"
     t.string   "scientific_name"
-    t.string   "assesments",           default: [],              array: true
+    t.json     "assesments"
     t.text     "taxonomicnotes"
     t.text     "rationale"
     t.text     "geographicrange"
@@ -28,13 +28,13 @@ ActiveRecord::Schema.define(version: 20170119230018) do
     t.text     "habitat"
     t.text     "threats"
     t.text     "conservationmeasures"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.string   "location"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

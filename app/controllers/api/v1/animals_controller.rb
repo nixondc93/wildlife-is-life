@@ -22,6 +22,7 @@ class Api::V1::AnimalsController < Api::V1::BaseController
     respond_with animal,   json: animal
   end
 
+#this is good!
   def find
     result = Animal.search do
       fulltext params[:species]["name"] do
